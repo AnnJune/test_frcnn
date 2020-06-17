@@ -183,7 +183,7 @@ if not os.path.isdir(log_path):
     os.mkdir(log_path)
 
 # Tensorboard log모델 연결
-callback = tf.compat.v1.keras.callbacks.TensorBoard(log_path)
+callback = TensorBoard(log_path)
 callback.set_model(model_all)
 
 epoch_length = 1000
@@ -222,7 +222,7 @@ for epoch_num in range(num_epochs):
         X, Y, img_data = next(data_gen_train)
 
         loss_rpn = model_rpn.train_on_batch(X, Y)
-        write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
+        # write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
 
         P_rpn = model_rpn.predict_on_batch(X)
 
