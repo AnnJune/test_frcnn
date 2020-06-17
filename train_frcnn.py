@@ -19,7 +19,7 @@ import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
 from keras.callbacks import TensorBoard
 
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # tensorboard 로그 작성 함수
 def write_log(callback, names, logs, batch_no):
     for name, value in zip(names, logs):
