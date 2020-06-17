@@ -23,7 +23,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # tensorboard 로그 작성 함수
 def write_log(callback, names, logs, batch_no):
     for name, value in zip(names, logs):
-        summary = tf.Summary()
+        summary = tf.compat.v1.Summary()
         summary_value = summary.value.add()
         summary_value.simple_value = value
         summary_value.tag = name
