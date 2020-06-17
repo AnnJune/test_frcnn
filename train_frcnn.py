@@ -183,7 +183,7 @@ if not os.path.isdir(log_path):
     os.mkdir(log_path)
 
 # Tensorboard log모델 연결
-callback = TensorBoard(log_path)
+callback = tf.compat.v1.keras.callbacks.TensorBoard(log_path)
 callback.set_model(model_all)
 
 epoch_length = 1000
