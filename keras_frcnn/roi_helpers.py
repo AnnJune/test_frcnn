@@ -45,7 +45,7 @@ def calc_iou(R, img_data, C, class_mapping):
         print(best_iou)
         if best_iou < C.classifier_min_overlap:
             print('continue')
-                continue
+            continue
         else:
             w = x2 - x1
             h = y2 - y1
