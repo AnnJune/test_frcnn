@@ -34,7 +34,7 @@ def iou(a, b):
 
     area_i = intersection(a, b)
     area_u = union(a, b, area_i)
-
+    print(area_i,area_u)
     return float(area_i) / float(area_u + 1e-6)
 
 
