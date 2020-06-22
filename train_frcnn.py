@@ -220,9 +220,7 @@ for epoch_num in range(num_epochs):
 
         # data generator에서 X, Y, image 가져오기
         X, Y, img_data = next(data_gen_train)
-        print(len(img_data))
         loss_rpn = model_rpn.train_on_batch(X, Y)
-        print(loss_rpn)
         # write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
 
         P_rpn = model_rpn.predict_on_batch(X)
@@ -239,7 +237,7 @@ for epoch_num in range(num_epochs):
         # sampling positive/negative samples
         neg_samples = np.where(Y1[0, :, -1] == 1)
         pos_samples = np.where(Y1[0, :, -1] == 0)
-
+        print(X2, neg_samples,pos_samples)
         if len(neg_samples) > 0:
             neg_samples = neg_samples[0]
         else:
