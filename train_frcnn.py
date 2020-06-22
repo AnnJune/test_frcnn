@@ -224,10 +224,11 @@ for epoch_num in range(num_epochs):
         # write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
 
         P_rpn = model_rpn.predict_on_batch(X)
-        print(P_rpn)
+        # print(P_rpn)
         R = roi_helpers.rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_data_format(), use_regr=True, overlap_thresh=0.7, max_boxes=300)
         # note: calc_iou converts from (x1,y1,x2,y2) to (x,y,w,h) format
         X2, Y1, Y2, IouS = roi_helpers.calc_iou(R, img_data, C, class_mapping)
+        print(X2, Y1, Y2, IouS)
 
         if X2 is None:
             rpn_accuracy_rpn_monitor.append(0)
