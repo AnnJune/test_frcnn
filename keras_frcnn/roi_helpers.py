@@ -34,7 +34,7 @@ def calc_iou(R, img_data, C, class_mapping):
         y1 = int(round(y1))
         x2 = int(round(x2))
         y2 = int(round(y2))
-
+        print(x1,y1,x2,y2)
         best_iou = 0.0
         best_bbox = -1
         for bbox_num in range(len(bboxes)):
