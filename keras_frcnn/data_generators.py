@@ -28,7 +28,7 @@ def intersection(ai, bi):
 # Intersection of Union
 def iou(a, b):
     # a and b should be (x1,y1,x2,y2)
-
+    print(a,b)
     if a[0] >= a[2] or a[1] >= a[3] or b[0] >= b[2] or b[1] >= b[3]:
         return 0.0
 
