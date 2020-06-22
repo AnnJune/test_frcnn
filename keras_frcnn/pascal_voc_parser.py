@@ -13,8 +13,8 @@ def get_data(input_path):
     visualise = False
 
     # pascal voc directory + 2012
-    data_paths = [os.path.join(input_path, 'VOC2012')]
-    # data_paths = [os.path.join(input_path, 'myVOCCME')]
+    # data_paths = [os.path.join(input_path, 'VOC2012')]
+    data_paths = [os.path.join(input_path, 'myVOCCME')]
 
     print('Parsing annotation files')
     for data_path in data_paths:
@@ -35,21 +35,21 @@ def get_data(input_path):
 
         with open(imgsets_path_trainval) as f:
             for line in f:
-                trainval_files.append(line.strip() + '.jpg')
+                trainval_files.append(line.strip() + '.png')
 
         with open(imgsets_path_train) as f:
             for line in f:
-                train_files.append(line.strip() + '.jpg')
+                train_files.append(line.strip() + '.png')
 
         with open(imgsets_path_val) as f:
             for line in f:
-                val_files.append(line.strip() + '.jpg')
+                val_files.append(line.strip() + '.png')
 
         # test-set not included in pascal VOC 2012
         if os.path.isfile(imgsets_path_test):
             with open(imgsets_path_test) as f:
                 for line in f:
-                    test_files.append(line.strip() + '.jpg')
+                    test_files.append(line.strip() + '.png')
 
         # 이미지셋 txt 파일 read 예외처리
         # try:
