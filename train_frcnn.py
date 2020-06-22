@@ -135,9 +135,9 @@ data_gen_val = data_generators.get_anchor_gt(val_imgs, classes_count, C, nn.get_
 data_gen_test = data_generators.get_anchor_gt(test_imgs, classes_count, C, nn.get_img_output_length, K.image_data_format(), mode='val')
 
 if K.image_data_format() == 'channels_first':
-    input_shape_img = (3, None, None)
+    input_shape_img = (1, None, None)
 else:
-    input_shape_img = (None, None, 3)
+    input_shape_img = (None, None, 1)
 
 # input placeholder 정의
 img_input = Input(shape=input_shape_img)
