@@ -135,9 +135,9 @@ data_gen_val = data_generators.get_anchor_gt(val_imgs, classes_count, C, nn.get_
 data_gen_test = data_generators.get_anchor_gt(test_imgs, classes_count, C, nn.get_img_output_length, K.image_data_format(), mode='val')
 
 if K.image_data_format() == 'channels_first':
-    input_shape_img = (1, None, None)
+    input_shape_img = (3, None, None)
 else:
-    input_shape_img = (None, None, 1)
+    input_shape_img = (None, None, 3)
 
 # input placeholder 정의
 img_input = Input(shape=input_shape_img)
@@ -220,7 +220,7 @@ for epoch_num in range(num_epochs):
 
         # data generator에서 X, Y, image 가져오기
         X, Y, img_data = next(data_gen_train)
-
+        print(X,Y len(img_data))
         loss_rpn = model_rpn.train_on_batch(X, Y)
         # write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
 
