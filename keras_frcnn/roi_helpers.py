@@ -9,6 +9,7 @@ import time
 def calc_iou(R, img_data, C, class_mapping):
 
     bboxes = img_data['bboxes']
+    print(bboxes)
     (width, height) = (img_data['width'], img_data['height'])
     # get image dimensions for resizing
     (resized_width, resized_height) = data_generators.get_new_img_size(width, height, C.im_size)
