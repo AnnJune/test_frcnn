@@ -13,7 +13,7 @@ from keras.models import Model
 from keras_frcnn import roi_helpers
 
 sys.setrecursionlimit(40000)
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 parser = OptionParser()
 
 parser.add_option("-p", "--path", dest="test_path", help="Path to test data.")
