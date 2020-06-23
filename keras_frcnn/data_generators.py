@@ -28,13 +28,13 @@ def intersection(ai, bi):
 # Intersection of Union
 def iou(a, b):
     # a and b should be (x1,y1,x2,y2)
-    print(a,b)
+    # print(a,b)
     if a[0] >= a[2] or a[1] >= a[3] or b[0] >= b[2] or b[1] >= b[3]:
         return 0.0
 
     area_i = intersection(a, b)
     area_u = union(a, b, area_i)
-    print(area_i,area_u)
+    # print(area_i,area_u)
     return float(area_i) / float(area_u + 1e-6)
 
 
