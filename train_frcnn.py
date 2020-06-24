@@ -17,7 +17,7 @@ from keras_frcnn import config, data_generators
 from keras_frcnn import losses as losses
 import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
-from keras.callbacks.tensorboard_v1 import TensorBoard
+from keras.callbacks import TensorBoard
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # tensorboard 로그 작성 함수
