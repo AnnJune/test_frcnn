@@ -17,7 +17,7 @@ from keras_frcnn import config, data_generators
 from keras_frcnn import losses as losses
 import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
-from keras.callbacks import TensorBoard
+from keras.callbacks.tensorboard_v1 import TensorBoard
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 # tensorboard 로그 작성 함수
@@ -221,7 +221,7 @@ for epoch_num in range(num_epochs):
         # data generator에서 X, Y, image 가져오기
         X, Y, img_data = next(data_gen_train)
         loss_rpn = model_rpn.train_on_batch(X, Y)
-        # write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
+        write_log(callback, ['rpn_cls_loss', 'rpn_reg_loss'], loss_rpn, train_step)
 
         P_rpn = model_rpn.predict_on_batch(X)
         # print(P_rpn)
@@ -273,7 +273,7 @@ for epoch_num in range(num_epochs):
                 sel_samples = random.choice(pos_samples)
 
         loss_class = model_classifier.train_on_batch([X, X2[:, sel_samples, :]], [Y1[:, sel_samples, :], Y2[:, sel_samples, :]])
-        # write_log(callback, ['detection_cls_loss', 'detection_reg_loss', 'detection_acc'], loss_class, train_step)
+        write_log(callback, ['detection_cls_loss', 'detection_reg_loss', 'detection_acc'], loss_class, train_step)
         train_step += 1
 
         losses[iter_num, 0] = loss_rpn[1]
@@ -311,12 +311,12 @@ for epoch_num in range(num_epochs):
             iter_num = 0
             start_time = time.time()
 
-            # write_log(callback,
-            #           ['Elapsed_time', 'mean_overlapping_bboxes', 'mean_rpn_cls_loss', 'mean_rpn_reg_loss',
-            #            'mean_detection_cls_loss', 'mean_detection_reg_loss', 'mean_detection_acc', 'total_loss'],
-            #           [time.time() - start_time, mean_overlapping_bboxes, loss_rpn_cls, loss_rpn_regr,
-            #            loss_class_cls, loss_class_regr, class_acc, curr_loss],
-            #           epoch_num)
+            write_log(callback,
+                      ['Elapsed_time', 'mean_overlapping_bboxes', 'mean_rpn_cls_loss', 'mean_rpn_reg_loss',
+                       'mean_detection_cls_loss', 'mean_detection_reg_loss', 'mean_detection_acc', 'total_loss'],
+                      [time.time() - start_time, mean_overlapping_bboxes, loss_rpn_cls, loss_rpn_regr,
+                       loss_class_cls, loss_class_regr, class_acc, curr_loss],
+                      epoch_num)
 
             if curr_loss < best_loss:
                 if C.verbose:
